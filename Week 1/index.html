@@ -1,150 +1,47 @@
-<html>
-
+--<html>
 <head>
-<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
-<meta name=Generator content="Microsoft Word 15 (filtered)">
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:8.0pt;
-	margin-left:0in;
-	line-height:107%;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-.MsoChpDefault
-	{font-family:"Calibri",sans-serif;}
-.MsoPapDefault
-	{margin-bottom:8.0pt;
-	line-height:107%;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
--->
-</style>
-
+  <title>A Leaflet map!</title>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+   integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+   crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
+   integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+   crossorigin=""></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="leaflet.heat.js"></script>
+  <style>
+    #map{ height: 100% }
+  </style>
 </head>
-
-<body lang=EN-US>
-
-<div class=WordSection1>
-
-<p class=MsoNormal>&lt;html&gt;</p>
-
-<p class=MsoNormal>&lt;head&gt;</p>
-
-<p class=MsoNormal>  &lt;title&gt;A Leaflet map!&lt;/title&gt;</p>
-
-<p class=MsoNormal>   &lt;link rel=&quot;stylesheet&quot;
-href=&quot;https://unpkg.com/leaflet@1.0.3/dist/leaflet.css&quot;</p>
-
-<p class=MsoNormal>  
-integrity=&quot;sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==&quot;</p>
-
-<p class=MsoNormal>   crossorigin=&quot;&quot;/&gt;</p>
-
-<p class=MsoNormal>  &lt;script
-src=&quot;https://unpkg.com/leaflet@1.0.3/dist/leaflet.js&quot;</p>
-
-<p class=MsoNormal>  
-integrity=&quot;sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==&quot;</p>
-
-<p class=MsoNormal>   crossorigin=&quot;&quot;&gt;&lt;/script&gt;</p>
-
-<p class=MsoNormal>  &lt;script src=&quot;https://code.jquery.com/jquery-2.1.1.min.js&quot;&gt;&lt;/script&gt;</p>
-
-<p class=MsoNormal>  &lt;script
-src=&quot;leaflet.heat.js&quot;&gt;&lt;/script&gt;</p>
-
-<p class=MsoNormal>  &lt;style&gt;</p>
-
-<p class=MsoNormal>    #map{ height: 100% }</p>
-
-<p class=MsoNormal>  &lt;/style&gt;</p>
-
-<p class=MsoNormal>&lt;/head&gt;</p>
-
-<p class=MsoNormal>&lt;body&gt;</p>
-
-<p class=MsoNormal> </p>
-
-<p class=MsoNormal>  &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;</p>
-
-<p class=MsoNormal> </p>
-
-<p class=MsoNormal>  &lt;script&gt;</p>
-
-<p class=MsoNormal> </p>
-
-<p class=MsoNormal>  // initialize the map</p>
-
-<p class=MsoNormal>  var map = L.map('map').setView([42.35, -71.08], 13);</p>
-
-<p class=MsoNormal> </p>
-
-<p class=MsoNormal>  // load a tile layer</p>
-
-<p class=MsoNormal> 
-L.tileLayer('http://tiles.mapc.org/basemap/{z}/{x}/{y}.png',</p>
-
-<p class=MsoNormal>    {</p>
-
-<p class=MsoNormal>      attribution: 'Tiles by &lt;a
-href=&quot;http://mapc.org&quot;&gt;MAPC&lt;/a&gt;, Data by &lt;a
-href=&quot;http://mass.gov/mgis&quot;&gt;MassGIS&lt;/a&gt;',</p>
-
-<p class=MsoNormal>      maxZoom: 17,</p>
-
-<p class=MsoNormal>      minZoom: 9</p>
-
-<p class=MsoNormal>    }).addTo(map);</p>
-
-<p class=MsoNormal>    </p>
-
-<p class=MsoNormal>  map.setZoom(12);</p>
-
-<p class=MsoNormal>  $.getJSON(&quot;rodents.geojson&quot;,function(data){</p>
-
-<p class=MsoNormal>    var locations = data.features.map(function(rat) {</p>
-
-<p class=MsoNormal>      // the heatmap plugin wants an array of each location</p>
-
-<p class=MsoNormal>      var location = rat.geometry.coordinates.reverse();</p>
-
-<p class=MsoNormal>      location.push(0.5);</p>
-
-<p class=MsoNormal>      return location; // e.g. [50.5, 30.5, 0.2], // lat,
-lng, intensity</p>
-
-<p class=MsoNormal>    });</p>
-
-<p class=MsoNormal>    var heat = L.heatLayer(locations, { radius: 35 });</p>
-
-<p class=MsoNormal>    map.addLayer(heat);</p>
-
-<p class=MsoNormal>  });</p>
-
-<p class=MsoNormal> </p>
-
-<p class=MsoNormal>  &lt;/script&gt;</p>
-
-<p class=MsoNormal>&lt;/body&gt;</p>
-
-<p class=MsoNormal>&lt;/html&gt;</p>
-
-</div>
-
+<body>
+ 
+  <div id="map"></div>
+ 
+  <script>
+ 
+  // initialize the map
+  var map = L.map('map').setView([42.35, -71.08], 13);
+ 
+  // load a tile layer
+  L.tileLayer('http://tiles.mapc.org/basemap/{z}/{x}/{y}.png',
+    {
+      attribution: 'Tiles by <a href="http://mapc.org">MAPC</a>, Data by <a href="http://mass.gov/mgis">MassGIS</a>',
+      maxZoom: 17,
+      minZoom: 9
+    }).addTo(map);
+    
+  map.setZoom(12);
+  $.getJSON("rodents.geojson",function(data){
+    var locations = data.features.map(function(rat) {
+      // the heatmap plugin wants an array of each location
+      var location = rat.geometry.coordinates.reverse();
+      location.push(0.5);
+      return location; // e.g. [50.5, 30.5, 0.2], // lat, lng, intensity
+    });
+    var heat = L.heatLayer(locations, { radius: 35 });
+    map.addLayer(heat);
+  });
+ 
+  </script>
 </body>
-
 </html>
